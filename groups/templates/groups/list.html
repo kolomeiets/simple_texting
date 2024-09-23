@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Groups
+    </title>
+</head>
+<body>
+    <main>
+        <h1>Group list</h1>
+        {% for group in groups %}
+            <h2>
+                <a href="/groups">
+                    {{ group.name }}
+                </a>
+            </h2>
+        {% endfor %}
+        <br /><br /><br />
+        <a href="/groups/add">Add new group</a>
+    </main>
+</body>
+</html>
