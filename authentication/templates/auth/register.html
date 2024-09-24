@@ -1,18 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>RRRR
-    </title>
-</head>
-<body>
-    <main>
-        <h1>Register a New User</h1>
-        <form class="form-with-validation" action="/auth/register/" method="post">
-            {% csrf_token %}
-            {{ form }}
-            <button class="form-submit">Submit</button>
-        </form>
-    </main>
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+    <h1>Create User</h1>
+    <form class="form-with-validation" action="/auth/register/" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <button class="form-submit">Submit</button>
+    </form>
+{% endblock %}

@@ -1,22 +1,32 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Groups
-    </title>
-</head>
-<body>
-    <main>
-        <h1>Group list</h1>
-        {% for group in groups %}
-            <h2>
-                <a href="/groups">
-                    {{ group.name }}
-                </a>
-            </h2>
-        {% endfor %}
-        <br /><br /><br />
-        <a href="/groups/add">Add new group</a>
-    </main>
-</body>
-</html>
+{% extends 'layout.html' %}
+
+{% block title %}
+    Login
+{% endblock %}
+
+{% block content %}
+<a href="{% url 'groups:add' %}">+ Add new group</a>
+        <h1>Groups:</h1>
+        <table style="border: 1px solid black;">
+            <tr>
+                <th>Name</th>
+                <th>Members</th>
+                <th>Is Group Member</th>
+                <th>Actions</th>
+            </tr>
+            {% for group in groups %}
+                <tr>
+                    <td>{{ group.name }}</td>
+                    <td>{{ group.members.count }}</td>
+                    <td>{% if group.current_user_is_member %}Yes{% else %}No{% endif %}</td>
+                    <td>
+                        {% if group.current_user_is_member %}
+                        <a href="{% url 'groups:leave' group_id=group.id %}" >Leave</a>
+                        {% else %}
+                            <a href="{% url 'groups:join' group_id=group.id %}" >Join</a>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+{% endblock %}

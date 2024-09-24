@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 
 from pathlib import Path
+import environ
+env = environ.Env()
+environ.Env.read_env()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -57,7 +60,7 @@ ROOT_URLCONF = "core.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": ['templates'],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -128,3 +131,4 @@ DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 AUTH_PROFILE_MODULE = 'authentication.User'
 AUTH_USER_MODEL = 'authentication.User'
 PHONENUMBER_DEFAULT_REGION = 'US'
+SIMPLE_TEXTING_API_TOKEN = env('SIMPLE_TEXTING_API_TOKEN')

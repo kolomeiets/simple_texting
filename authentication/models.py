@@ -18,3 +18,6 @@ class User(AbstractUser):
 
     def __str__(self):
         return self.email
+
+    def is_group_member(self, group):
+        return True if self.groups_joined.filter(group=group) else False
